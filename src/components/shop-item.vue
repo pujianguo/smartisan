@@ -11,15 +11,15 @@
         </ul>
       </div>
       <div class="item-btns clearfix">
-        <span class="item-gray-btn"><a href="javascript:;" target="_blank">查看详情</a> </span>
-        <span class="item-blue-btn"  @click="addCarPanelData(item.sku_info[itemIndex])">加入购物车 </span>
+        <span class="item-gray-btn"> <router-link :to="{name: 'Item', query: {itemId: item.sku_info[itemIndex].sku_id}}">查看详情</router-link> </span>
+        <span class="item-blue-btn" @click="addCarPanelData(item.sku_info[itemIndex])">加入购物车 </span>
       </div>
       <div class="item-price clearfix">
         <i>¥</i><span> {{item.price}} </span>
       </div>
       <div class="discount-icon">false</div>
       <div class="item-cover">
-        <a href="javascript:;" target="_blank"></a>
+        <router-link :to="{name: 'Item', query: {itemId: item.sku_info[itemIndex].sku_id}}"></router-link>
       </div>
     </div>
   </div>
@@ -41,7 +41,11 @@ export default{
     tableIndex (index) {
       this.itemIndex = index
     },
-    addCarPanelData (data) {
+    addCarPanelData (info) {
+      let data = {
+        info: info,
+        count: 1
+      }
       this.$store.commit('addCarPanelData', data)
     }
   }

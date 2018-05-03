@@ -36,28 +36,28 @@ export default new Vuex.Store({
       let bOff = true
       if (!state.ball.show) {
         state.carPanelData.forEach(goods => {
-          if (goods.sku_id === data.sku_id) {
-            goods.count++
+          if (goods.sku_id === data.info.sku_id) {
+            goods.count += data.count
             bOff = false
             if (goods.count > goods.limit_num) {
-              goods.count--
+              goods.count -= data.count
               state.maxOff = true
               return
             }
             state.carShow = true
             state.ball.show = true
-            state.ball.img = data.ali_image
+            state.ball.img = data.info.ali_image
             state.ball.el = event.path[0]
           }
         })
         if (bOff) {
-          let goodsData = data
-          Vue.set(goodsData, 'count', 1)
+          let goodsData = data.info
+          Vue.set(goodsData, 'count', data.count)
           state.carPanelData.push(goodsData)
           state.carShow = true
           // 加入购入车动画
           state.ball.show = true
-          state.ball.img = data.ali_image
+          state.ball.img = data.info.ali_image
           state.ball.el = event.path[0]
         }
       }
