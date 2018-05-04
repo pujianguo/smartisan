@@ -97,7 +97,6 @@ export default{
 
     // ball
     beforeEnter (el) {
-      console.log('befor', el)
       let rect = this.ball.el.getBoundingClientRect()
       let rectEl = document.getElementsByClassName('ball-rect')[0].getBoundingClientRect()
       let ball = document.getElementsByClassName('mask-item')[0]
